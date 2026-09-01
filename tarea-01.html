@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 01 — Portafolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0221;
+      --panel: #170833;
+      --purple: #7209b7;
+      --lilac: #b967ff;
+      --pink: #f72585;
+      --text: #efe6ff;
+      --muted: #a695c9;
+      --ink: #21113d;
+      --line: #eadcf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      background:
+        linear-gradient(125deg, rgba(114, 9, 183, .2), transparent 34%),
+        linear-gradient(315deg, rgba(247, 37, 133, .12), transparent 42%),
+        var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      z-index: -1;
+      width: 230px;
+      height: 160px;
+      border: 1px solid rgba(185, 103, 255, .22);
+      pointer-events: none;
+      transform: rotate(28deg);
+      clip-path: polygon(0 0, 100% 17%, 82% 100%, 16% 78%);
+    }
+    body::before { top: 8%; left: -95px; background: rgba(114, 9, 183, .14); }
+    body::after { right: -90px; bottom: 4%; background: rgba(247, 37, 133, .14); }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 6vw;
+      border-bottom: 1px solid rgba(185, 103, 255, .3);
+      background: rgba(13, 2, 33, .7);
+      backdrop-filter: blur(7px);
+    }
+    .brand, .eyebrow, .label { font-family: 'Orbitron', sans-serif; }
+    .brand { font-size: 14px; font-weight: 700; letter-spacing: .04em; }
+    .brand span { color: var(--pink); }
+    .back-link { color: var(--muted); font-size: 13px; }
+    .back-link:hover { color: var(--text); }
+    .page {
+      width: min(980px, 88vw);
+      margin: 0 auto;
+      padding: 76px 0 100px;
+    }
+    .eyebrow { color: var(--lilac); font-size: 11px; letter-spacing: .1em; }
+    h1 {
+      max-width: 14ch;
+      margin-top: 14px;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 6vw, 4.2rem);
+      line-height: 1.08;
+    }
+    .intro { max-width: 52ch; margin-top: 18px; color: var(--muted); line-height: 1.65; }
+    .workspace {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 22px;
+      margin-top: 48px;
+    }
+    .panel {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, .18);
+    }
+    .panel--wide { grid-column: 1 / -1; }
+    .panel h2 { margin-bottom: 20px; font-family: 'Orbitron', sans-serif; font-size: 17px; }
+    .field { display: grid; gap: 8px; margin-bottom: 18px; }
+    .field:last-child { margin-bottom: 0; }
+    .label { color: #68537e; font-size: 10px; letter-spacing: .06em; }
+    input, textarea {
+      width: 100%;
+      border: 1px dashed #cdbdde;
+      border-radius: 10px;
+      outline: none;
+      background: #fff;
+      color: var(--ink);
+      padding: 13px 14px;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    input { min-height: 46px; }
+    textarea { min-height: 154px; resize: vertical; line-height: 1.55; }
+    input:focus, textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(114, 9, 183, .1); }
+    .panel__blank {
+      min-height: 230px;
+      padding: 18px;
+      border: 1px dashed #cdbdde;
+      border-radius: 10px;
+      color: #9a89aa;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 22px;
+      border: 1px solid transparent;
+      border-radius: 100px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn--primary { background: linear-gradient(120deg, var(--pink), var(--purple)); color: #fff; }
+    .btn--ghost { border-color: rgba(185, 103, 255, .45); color: var(--lilac); }
+    footer { padding: 24px 6vw 36px; border-top: 1px solid rgba(185, 103, 255, .3); color: var(--muted); font-size: 12px; text-align: center; }
+    @media (max-width: 700px) {
+      .topbar { align-items: flex-start; flex-direction: column; padding: 18px 6vw; }
+      .page { width: min(92vw, 560px); padding: 56px 0 72px; }
+      .workspace { grid-template-columns: 1fr; margin-top: 34px; }
+      .panel--wide { grid-column: auto; }
+      .panel { padding: 21px; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">PORTAFOLIO<span>/</span>TAREAS</a>
+    <a class="back-link" href="index.html#catalogo">← Volver al catálogo</a>
+  </header>
+
+  <main class="page">
+    <p class="eyebrow">PÁGINA INDEPENDIENTE · ACTIVIDAD 01</p>
+    <h1>Actividad 01</h1>
+    <p class="intro">Usa este espacio para desarrollar tu actividad. Puedes cambiar el título, escribir instrucciones, agregar avances o colocar aquí la información que necesites.</p>
+
+    <section class="workspace" aria-label="Espacios editables de la actividad">
+      <article class="panel">
+        <h2>Datos generales</h2>
+        <div class="field">
+          <label class="label" for="titulo">TÍTULO DE LA ACTIVIDAD</label>
+          <input id="titulo" type="text" placeholder="Escribe el título aquí">
+        </div>
+        <div class="field">
+          <label class="label" for="fecha">FECHA O ENTREGA</label>
+          <input id="fecha" type="text" placeholder="Escribe la fecha aquí">
+        </div>
+        <div class="field">
+          <label class="label" for="responsable">RESPONSABLE</label>
+          <input id="responsable" type="text" placeholder="Escribe el nombre aquí">
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Descripción</h2>
+        <textarea placeholder="Escribe aquí los objetivos, instrucciones o descripción de tu actividad..."></textarea>
+      </article>
+
+      <article class="panel panel--wide">
+        <h2>Notas, evidencias o avances</h2>
+        <div class="panel__blank">Este espacio está listo para que agregues tus notas, enlaces, imágenes o evidencias.</div>
+        <div class="actions">
+          <a class="btn btn--primary" href="index.html#catalogo">Guardar espacio</a>
+          <a class="btn btn--ghost" href="index.html#catalogo">Volver al catálogo</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>© 2026 — Automatización industrial y de servicios · CBTIS 144</footer>
+</body>
+</html>
