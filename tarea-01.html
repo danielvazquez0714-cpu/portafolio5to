@@ -27,8 +27,23 @@
     <p class="intro">La automatización integra conocimientos de electricidad, electrónica, programación, control y comunicaciones para que una tarea o proceso se ejecute con menor intervención humana, de manera repetible, segura y medible. En este contexto, Arduino facilita el aprendizaje y la creación de prototipos, mientras que el Internet de las Cosas —IoT— permite conectar dispositivos, intercambiar datos y supervisar procesos desde una red.</p>
 
     <section class="workspace" aria-label="Contenido de la actividad">
+      <article class="panel panel--wide">
+        <h2>1. Historia de la automatización</h2>
+        <p>La automatización tiene sus antecedentes en herramientas y mecanismos creados para reducir el esfuerzo humano. Durante la Revolución Industrial, entre los siglos XVIII y XIX, aparecieron máquinas capaces de realizar operaciones repetitivas y sistemas de control mecánico aplicados a telares, motores y procesos de fabricación.</p>
+        <p>En el siglo XX, el desarrollo de la electricidad, la electrónica y los sistemas de control permitió utilizar relevadores, temporizadores, contactores y posteriormente controladores lógicos programables —PLC—. Estos avances hicieron posible coordinar máquinas, medir variables y ejecutar secuencias con mayor precisión.</p>
+        <p>Con la llegada de los microprocesadores, las computadoras industriales y las redes de comunicación, la automatización evolucionó hacia sistemas digitales supervisados. Actualmente, el IoT, la computación en la nube, la inteligencia artificial y el análisis de datos permiten conectar equipos, consultar información a distancia y optimizar decisiones en tiempo real. Arduino forma parte de este proceso como una plataforma accesible para aprender electrónica, programación y control embebido.</p>
+      </article>
+
       <article class="panel">
-        <h2>1. ¿Qué es la automatización?</h2>
+        <h2>2. Introducción</h2>
+        <p>La <strong>automatización</strong> integra electricidad, electrónica, programación, control y comunicaciones para que una tarea o proceso se ejecute con menor intervención humana, de manera repetible, segura y medible. En este contexto, Arduino facilita el aprendizaje y la creación de prototipos, mientras que el Internet de las Cosas —IoT— permite conectar dispositivos, intercambiar datos y supervisar procesos desde una red.</p>
+        <div class="definition"><strong>Idea central:</strong> automatizar no significa solamente “hacer que algo funcione solo”. Significa diseñar una relación ordenada entre <span class="accent">entradas</span>, procesamiento de información y <span class="accent">salidas</span>, considerando objetivos, límites, seguridad y mantenimiento.</div>
+        <h3>Objetivos principales</h3>
+        <ul><li>Incrementar la productividad y la continuidad de las operaciones.</li><li>Mejorar la calidad mediante resultados repetibles y trazables.</li><li>Reducir errores, desperdicios, tiempos de espera y exposición a riesgos.</li><li>Obtener datos para analizar el proceso y tomar decisiones oportunas.</li></ul>
+      </article>
+
+      <article class="panel">
+        <h2>3. Conceptos clave</h2>
         <p>La <strong>automatización</strong> es el uso de sistemas técnicos para observar variables, tomar decisiones y ejecutar acciones sin que una persona tenga que realizar continuamente cada operación. Un sistema automatizado puede controlar temperatura, nivel, presión, velocidad, iluminación, acceso, inventario o consumo energético.</p>
         <div class="definition"><strong>Idea central:</strong> automatizar no significa simplemente “hacer que algo funcione solo”. Significa diseñar una relación ordenada entre <span class="accent">entradas</span>, procesamiento de información y <span class="accent">salidas</span>, considerando objetivos, límites, seguridad y mantenimiento.</div>
         <h3>Objetivos principales</h3>
@@ -36,7 +51,7 @@
       </article>
 
       <article class="panel">
-        <h2>2. Automatización industrial y de servicios</h2>
+        <h2>6. Diferencias entre automatización industrial y de servicios</h2>
         <p>En la <strong>industria</strong>, la automatización se aplica a líneas de producción, motores, bombas, bandas transportadoras, hornos, robots, sistemas de dosificación y control de calidad. En los <strong>servicios</strong>, se utiliza en edificios inteligentes, agricultura, hospitales, comercios, transporte, seguridad, hoteles y gestión energética.</p>
         <div class="table-wrap"><table class="concepts"><thead><tr><th>Entorno</th><th>Ejemplo</th><th>Variable o resultado</th></tr></thead><tbody><tr><td>Industrial</td><td>Control de temperatura en un horno</td><td>Temperatura estable y producto uniforme</td></tr><tr><td>Edificio</td><td>Iluminación automática</td><td>Ahorro de energía y confort</td></tr><tr><td>Agrícola</td><td>Riego basado en humedad</td><td>Uso eficiente del agua</td></tr><tr><td>Comercial</td><td>Monitoreo de inventario</td><td>Alertas de reposición</td></tr></tbody></table></div>
         <p>La diferencia principal no está en que un sistema sea “industrial” o “de servicios”, sino en sus niveles de exigencia. Una instalación industrial suele requerir alta disponibilidad, tiempos de respuesta definidos, protección de personas y equipos, y procedimientos de operación estrictos.</p>
@@ -46,11 +61,13 @@
         <h2>3. Conceptos clave de un sistema automatizado</h2>
         <div class="table-wrap"><table class="concepts"><thead><tr><th>Concepto</th><th>Función</th><th>Ejemplos</th></tr></thead><tbody><tr><td><strong>Variable de proceso</strong></td><td>Magnitud que se desea observar o controlar.</td><td>Temperatura, presión, nivel, humedad, velocidad.</td></tr><tr><td><strong>Sensor</strong></td><td>Detecta una condición física y la convierte en una señal eléctrica.</td><td>LDR, DHT22, ultrasonido, termopar, sensor de corriente.</td></tr><tr><td><strong>Controlador</strong></td><td>Procesa las señales y decide qué acción realizar.</td><td>Arduino, PLC, microcontrolador, computadora industrial.</td></tr><tr><td><strong>Actuador</strong></td><td>Convierte una orden eléctrica en una acción física.</td><td>Motor, relevador, válvula, solenoide, lámpara.</td></tr><tr><td><strong>Interfaz</strong></td><td>Permite visualizar datos o enviar órdenes al sistema.</td><td>Display, panel HMI, aplicación móvil, dashboard web.</td></tr><tr><td><strong>Retroalimentación</strong></td><td>Compara el resultado medido con el valor deseado para corregir el proceso.</td><td>Termostato, control de velocidad, control PID.</td></tr><tr><td><strong>Protocolo</strong></td><td>Define cómo se comunican los dispositivos.</td><td>UART, I²C, SPI, Wi-Fi, MQTT, HTTP, Modbus.</td></tr></tbody></table></div>
         <div class="flow"><div>ENTRADA<span>Sensor o señal</span></div><div>ADQUISICIÓN<span>Lectura y conversión</span></div><div>DECISIÓN<span>Programa de control</span></div><div>SALIDA<span>Actuador</span></div><div>SUPERVISIÓN<span>Datos y alertas</span></div></div>
-        <p>El ciclo básico consiste en <strong>medir, procesar, actuar y verificar</strong>. Esta secuencia puede repetirse cientos o miles de veces, según la velocidad del proceso y las capacidades del controlador.</p>
+        <h3>4. El ciclo de la automatización</h3>
+        <p>El ciclo de la automatización consiste en <strong>medir, procesar, decidir, actuar y verificar</strong>. Primero, un sensor detecta una variable; después, el controlador adquiere y analiza el dato; a continuación, compara la condición con una regla o valor de referencia; finalmente, activa un actuador y comprueba el resultado mediante retroalimentación.</p>
+        <p>Este ciclo se repite continuamente y puede incluir alarmas, registros históricos, comunicación con otros dispositivos y acciones de emergencia. En un sistema IoT, los datos del ciclo también pueden enviarse a una plataforma para visualización, análisis y notificaciones.</p>
       </article>
 
       <article class="panel">
-        <h2>4. Arduino como plataforma</h2>
+        <h2>7. Arduino como plataforma</h2>
         <p><strong>Arduino</strong> es una plataforma de desarrollo basada en placas con microcontroladores, un entorno de programación y bibliotecas que simplifican la interacción con componentes electrónicos. La documentación oficial identifica elementos comunes como microcontrolador, pines digitales, entradas analógicas, alimentación, tierra y conexión USB [1].</p>
         <p>En un programa de Arduino, la función <code>setup()</code> se ejecuta una vez para configurar el sistema y <code>loop()</code> se repite continuamente. Esto permite leer sensores, evaluar condiciones y controlar actuadores en un ciclo de trabajo.</p>
         <h3>Señales y pines</h3>
@@ -59,7 +76,7 @@
       </article>
 
       <article class="panel">
-        <h2>5. IoT: dispositivos conectados</h2>
+        <h2>8. IoT: dispositivos conectados</h2>
         <p>El <strong>Internet de las Cosas</strong> es un modelo en el que objetos físicos incorporan sensores, procesamiento, conectividad y capacidad de intercambio de datos. En un proyecto de automatización, IoT permite registrar información, consultar el estado de un equipo, generar alertas y enviar comandos de forma remota.</p>
         <h3>Arquitectura básica</h3>
         <ol><li><strong>Capa física:</strong> sensores, actuadores, Arduino y módulos de comunicación.</li><li><strong>Capa de red:</strong> Wi-Fi, Ethernet, Bluetooth, LoRa, redes celulares o NB-IoT.</li><li><strong>Capa de datos:</strong> servidor, plataforma en la nube, base de datos o broker MQTT.</li><li><strong>Capa de aplicación:</strong> dashboard, aplicación móvil, reportes, reglas y notificaciones.</li></ol>
@@ -68,7 +85,7 @@
       </article>
 
       <article class="panel panel--wide">
-        <h2>6. Ejemplo de funcionamiento con Arduino</h2>
+        <h2>9. Ejemplo de funcionamiento con Arduino</h2>
         <p>El siguiente ejemplo representa un sistema sencillo de control de temperatura. Si la temperatura supera un límite, se enciende un ventilador mediante una etapa de potencia. En una aplicación IoT, la lectura podría enviarse además a un dashboard para visualizar tendencias y producir una alerta.</p>
         <pre class="code"><code>const int sensorPin = A0;
 const int ventiladorPin = 9;
@@ -95,25 +112,26 @@ void loop() {
       </article>
 
       <article class="panel">
-        <h2>7. Beneficios y limitaciones</h2>
-        <p>Arduino es especialmente útil para aprender, experimentar y construir prototipos porque combina hardware accesible con una programación relativamente sencilla. También permite validar una idea antes de migrarla a una solución industrial de mayor robustez.</p>
-        <p>Sin embargo, una placa educativa no sustituye automáticamente a un PLC o a un controlador industrial. Para seleccionar una solución deben analizarse el ambiente, la temperatura, el ruido eléctrico, la disponibilidad, el mantenimiento, la certificación, la seguridad funcional, la escalabilidad y el costo total.</p>
+        <h2>5. Ventajas y desventajas</h2>
+        <p>Entre las <strong>ventajas</strong> de la automatización se encuentran la mayor productividad, precisión, repetibilidad, seguridad, trazabilidad y disponibilidad de datos. También puede disminuir costos operativos y facilitar la detección temprana de fallas.</p>
+        <p>Entre sus <strong>desventajas o desafíos</strong> se encuentran la inversión inicial, la necesidad de personal capacitado, los costos de mantenimiento, la dependencia de energía y comunicaciones, la posible sustitución de tareas repetitivas y los riesgos de ciberseguridad. Por ello, automatizar requiere planeación y evaluación técnica, económica y humana.</p>
+        <p>Arduino es especialmente útil para aprender, experimentar y construir prototipos porque combina hardware accesible con una programación relativamente sencilla. Sin embargo, no sustituye automáticamente a un PLC o controlador industrial: deben analizarse el ambiente, el ruido eléctrico, la disponibilidad, el mantenimiento, la certificación, la seguridad funcional, la escalabilidad y el costo total.</p>
       </article>
 
       <article class="panel">
-        <h2>8. Ciberseguridad y buenas prácticas</h2>
+        <h2>10. Ciberseguridad y buenas prácticas</h2>
         <p>Al conectar un proceso físico a una red, una falla digital puede afectar la operación, la información o la seguridad de las personas. NIST recomienda proteger los sistemas de control industrial mediante medidas como acceso remoto seguro, autenticación y autorización, detección de comportamientos anómalos y control de modificaciones de hardware, software o firmware [3].</p>
         <ul><li>Usar contraseñas únicas y actualizar firmware y bibliotecas.</li><li>Separar la red de control de la red administrativa cuando sea posible.</li><li>Validar los datos recibidos antes de activar un actuador.</li><li>Diseñar estados seguros ante desconexión, sensor averiado o pérdida de energía.</li><li>Registrar eventos y limitar los privilegios de cada usuario.</li></ul>
       </article>
 
       <article class="panel panel--wide">
-        <h2>Conclusión</h2>
+        <h2>11. Conclusión</h2>
         <p>Los fundamentos de la automatización se comprenden mejor como un sistema completo: los sensores observan el proceso, el controlador interpreta las señales, los actuadores ejecutan acciones y la interfaz permite supervisar resultados. Arduino ofrece una forma práctica de estudiar esta cadena y crear prototipos; IoT amplía sus posibilidades al conectar los dispositivos con plataformas, aplicaciones y servicios de datos.</p>
         <p>El reto más importante no es solo programar una placa, sino definir correctamente el problema, seleccionar sensores y actuadores compatibles, diseñar el control, proteger la instalación y evaluar si la solución es confiable y sostenible. Así, la automatización puede convertirse en una herramienta para mejorar la productividad, la seguridad, la calidad y el uso responsable de los recursos.</p>
       </article>
 
       <article class="panel panel--wide">
-        <h2>Referencias</h2>
+        <h2>12. Referencias</h2>
         <ol class="refs"><li><a href="https://docs.arduino.cc/learn/starting-guide/getting-started-arduino/" target="_blank" rel="noopener">Arduino Documentation, “Getting Started with Arduino”</a>. Conceptos de placa, señales, sensores, actuadores y programación básica.</li><li><a href="https://www.arduino.cc/en/Tutorial/iot-cloud-getting-started" target="_blank" rel="noopener">Arduino, “Getting Started with Arduino Cloud”</a>. Dispositivos, variables sincronizadas, dashboards y conectividad IoT.</li><li><a href="https://www.nist.gov/news-events/news/2022/03/nist-releases-cybersecurity-guide-manufacturing-control-systems" target="_blank" rel="noopener">NIST, “Cybersecurity Guide for Manufacturing Control Systems”</a>. Recomendaciones de ciberseguridad para sistemas de control industrial.</li></ol>
       </article>
     </section>
