@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actividad 03 — Portafolio</title>
+  <title>Actividad 03 — Explicación del armado con Arduino</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -17,128 +17,65 @@
       --muted: #a695c9;
       --ink: #21113d;
       --line: #eadcf8;
+      --green: #21c98a;
+      --red: #ff5470;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      min-width: 320px;
-      min-height: 100vh;
-      background:
-        linear-gradient(125deg, rgba(114, 9, 183, .2), transparent 34%),
-        linear-gradient(315deg, rgba(247, 37, 133, .12), transparent 42%),
-        var(--bg);
-      color: var(--text);
-      font-family: 'Space Grotesk', sans-serif;
-      overflow-x: hidden;
+      min-width: 320px; min-height: 100vh;
+      background: linear-gradient(125deg, rgba(114,9,183,.2), transparent 34%),
+                  linear-gradient(315deg, rgba(247,37,133,.12), transparent 42%), var(--bg);
+      color: var(--text); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden;
     }
-    body::before, body::after {
-      content: '';
-      position: fixed;
-      z-index: -1;
-      width: 230px;
-      height: 160px;
-      border: 1px solid rgba(185, 103, 255, .22);
-      pointer-events: none;
-      transform: rotate(28deg);
-      clip-path: polygon(0 0, 100% 17%, 82% 100%, 16% 78%);
-    }
-    body::before { top: 8%; left: -95px; background: rgba(114, 9, 183, .14); }
-    body::after { right: -90px; bottom: 4%; background: rgba(247, 37, 133, .14); }
+    body::before, body::after { content: ''; position: fixed; z-index: -1; width: 230px; height: 160px; border: 1px solid rgba(185,103,255,.22); pointer-events: none; transform: rotate(28deg); clip-path: polygon(0 0,100% 17%,82% 100%,16% 78%); }
+    body::before { top: 8%; left: -95px; background: rgba(114,9,183,.14); }
+    body::after { right: -90px; bottom: 4%; background: rgba(247,37,133,.14); }
     a { color: inherit; text-decoration: none; }
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 22px 6vw;
-      border-bottom: 1px solid rgba(185, 103, 255, .3);
-      background: rgba(13, 2, 33, .7);
-      backdrop-filter: blur(7px);
-    }
-    .brand, .eyebrow, .label { font-family: 'Orbitron', sans-serif; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 6vw; border-bottom: 1px solid rgba(185,103,255,.3); background: rgba(13,2,33,.7); backdrop-filter: blur(7px); position: sticky; top: 0; z-index: 10; }
+    .brand, .eyebrow, .label, .section-num, .panel h3, h1, h2 { font-family: 'Orbitron', sans-serif; }
     .brand { font-size: 14px; font-weight: 700; letter-spacing: .04em; }
     .brand span { color: var(--pink); }
     .back-link { color: var(--muted); font-size: 13px; }
     .back-link:hover { color: var(--text); }
-    .page {
-      width: min(980px, 88vw);
-      margin: 0 auto;
-      padding: 76px 0 100px;
-    }
+    .page { width: min(980px, 88vw); margin: 0 auto; padding: 76px 0 100px; }
     .eyebrow { color: var(--lilac); font-size: 11px; letter-spacing: .1em; }
-    h1 {
-      max-width: 14ch;
-      margin-top: 14px;
-      color: #fff;
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2rem, 6vw, 4.2rem);
-      line-height: 1.08;
-    }
-    .intro { max-width: 52ch; margin-top: 18px; color: var(--muted); line-height: 1.65; }
-    .workspace {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 22px;
-      margin-top: 48px;
-    }
-    .panel {
-      padding: 26px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: #fff;
-      color: var(--ink);
-      box-shadow: 0 18px 38px rgba(0, 0, 0, .18);
-    }
+    h1 { max-width: 24ch; margin-top: 14px; color: #fff; font-size: clamp(1.7rem, 5vw, 3.4rem); line-height: 1.12; }
+    .intro { max-width: 65ch; margin-top: 18px; color: var(--muted); line-height: 1.65; }
+    .meta-grid { margin-top: 34px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .meta-card { border: 1px solid rgba(185,103,255,.3); background: rgba(23,8,51,.55); border-radius: 14px; padding: 16px 18px; }
+    .meta-card .label { color: var(--lilac); font-size: 10px; letter-spacing: .08em; display: block; margin-bottom: 6px; }
+    .meta-card .value { font-size: 14px; line-height: 1.5; }
+    .section { margin-top: 46px; }
+    .section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
+    .section-num { font-size: 12px; color: var(--pink); border: 1px solid var(--pink); border-radius: 100px; padding: 4px 11px; white-space: nowrap; }
+    .section-head h2 { font-size: clamp(16px, 2.4vw, 22px); color: #fff; }
+    .workspace { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .workspace.two-col { grid-template-columns: 1fr 1fr; }
+    .panel { padding: 26px; border: 1px solid var(--line); border-radius: 18px; background: #fff; color: var(--ink); box-shadow: 0 18px 38px rgba(0,0,0,.18); }
     .panel--wide { grid-column: 1 / -1; }
-    .panel h2 { margin-bottom: 20px; font-family: 'Orbitron', sans-serif; font-size: 17px; }
-    .field { display: grid; gap: 8px; margin-bottom: 18px; }
-    .field:last-child { margin-bottom: 0; }
-    .label { color: #68537e; font-size: 10px; letter-spacing: .06em; }
-    input, textarea {
-      width: 100%;
-      border: 1px dashed #cdbdde;
-      border-radius: 10px;
-      outline: none;
-      background: #fff;
-      color: var(--ink);
-      padding: 13px 14px;
-      transition: border-color .2s ease, box-shadow .2s ease;
-    }
-    input { min-height: 46px; }
-    textarea { min-height: 154px; resize: vertical; line-height: 1.55; }
-    input:focus, textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(114, 9, 183, .1); }
-    .panel__blank {
-      min-height: 230px;
-      padding: 18px;
-      border: 1px dashed #cdbdde;
-      border-radius: 10px;
-      color: #9a89aa;
-      font-size: 13px;
-      line-height: 1.6;
-    }
+    .panel h3 { margin-bottom: 16px; font-size: 14px; color: var(--purple); }
+    .panel p { line-height: 1.7; margin-bottom: 12px; }
+    .panel p:last-child { margin-bottom: 0; }
+    .panel ul, .panel ol { padding-left: 20px; line-height: 1.85; }
+    .panel li { margin-bottom: 6px; }
+    .panel li b { color: var(--purple); }
+    .video-frame { overflow: hidden; border: 1px solid #cdbdde; border-radius: 12px; background: #120528; }
+    video { display: block; width: 100%; max-height: 620px; background: #08020f; }
+    .video-caption { margin-top: 10px; color: #68537e; font-size: 12px; text-align: center; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e5d9f3; vertical-align: top; }
+    th { font-family: 'Orbitron', sans-serif; font-size: 10px; letter-spacing: .05em; color: var(--purple); background: #f6f1fb; }
+    tr:last-child td { border-bottom: none; }
+    .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; padding: 8px 14px; border-radius: 100px; border: 1px solid #cdbdde; background: #f6f1fb; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .dot--green { background: var(--green); } .dot--red { background: var(--red); }
     .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 12px 22px;
-      border: 1px solid transparent;
-      border-radius: 100px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 12px 22px; border: 1px solid transparent; border-radius: 100px; font-weight: 600; cursor: pointer; }
     .btn--primary { background: linear-gradient(120deg, var(--pink), var(--purple)); color: #fff; }
-    .btn--ghost { border-color: rgba(185, 103, 255, .45); color: var(--lilac); }
-    footer { padding: 24px 6vw 36px; border-top: 1px solid rgba(185, 103, 255, .3); color: var(--muted); font-size: 12px; text-align: center; }
-    @media (max-width: 700px) {
-      .topbar { align-items: flex-start; flex-direction: column; padding: 18px 6vw; }
-      .page { width: min(92vw, 560px); padding: 56px 0 72px; }
-      .workspace { grid-template-columns: 1fr; margin-top: 34px; }
-      .panel--wide { grid-column: auto; }
-      .panel { padding: 21px; }
-      .actions { flex-direction: column; }
-      .btn { width: 100%; }
-    }
+    .btn--ghost { border-color: rgba(185,103,255,.45); color: var(--lilac); }
+    footer { padding: 24px 6vw 36px; border-top: 1px solid rgba(185,103,255,.3); color: var(--muted); font-size: 12px; text-align: center; }
+    @media (max-width: 700px) { .topbar { align-items: flex-start; flex-direction: column; padding: 18px 6vw; } .page { width: min(92vw,560px); padding: 56px 0 72px; } .meta-grid, .workspace.two-col { grid-template-columns: 1fr; } .meta-grid { margin-top: 26px; } .panel { padding: 21px; } .actions { flex-direction: column; } .btn { width: 100%; } table { font-size: 12px; } th, td { padding: 8px; } }
   </style>
 </head>
 <body>
@@ -148,43 +85,90 @@
   </header>
 
   <main class="page">
-    <p class="eyebrow">PÁGINA INDEPENDIENTE · ACTIVIDAD 03</p>
-    <h1>Actividad 03</h1>
-    <p class="intro">Usa este espacio para desarrollar tu actividad. Puedes cambiar el título, escribir instrucciones, agregar avances o colocar aquí la información que necesites.</p>
+    <p class="eyebrow">PÁGINA INDEPENDIENTE · ACTIVIDAD 03 · EXPLICACIÓN DEL ARMADO</p>
+    <h1>Armado del sistema automatizado con Arduino</h1>
+    <p class="intro">Explicación del circuito y de la prueba mostrada en el video. El montaje utiliza un Arduino Uno para detectar la proximidad de un objeto, activar indicadores luminosos y mover un servomotor.</p>
 
-    <section class="workspace" aria-label="Espacios editables de la actividad">
-      <article class="panel">
-        <h2>Datos generales</h2>
-        <div class="field">
-          <label class="label" for="titulo">TÍTULO DE LA ACTIVIDAD</label>
-          <input id="titulo" type="text" placeholder="Escribe el título aquí">
-        </div>
-        <div class="field">
-          <label class="label" for="fecha">FECHA O ENTREGA</label>
-          <input id="fecha" type="text" placeholder="Escribe la fecha aquí">
-        </div>
-        <div class="field">
-          <label class="label" for="responsable">RESPONSABLE</label>
-          <input id="responsable" type="text" placeholder="Escribe el nombre aquí">
-        </div>
-      </article>
-
-      <article class="panel">
-        <h2>Descripción</h2>
-        <textarea placeholder="Escribe aquí los objetivos, instrucciones o descripción de tu actividad..."></textarea>
-      </article>
-
-      <article class="panel panel--wide">
-        <h2>Notas, evidencias o avances</h2>
-        <div class="panel__blank">Este espacio está listo para que agregues tus notas, enlaces, imágenes o evidencias.</div>
-        <div class="actions">
-          <a class="btn btn--primary" href="index.html#catalogo">Guardar espacio</a>
-          <a class="btn btn--ghost" href="index.html#catalogo">Volver al catálogo</a>
-        </div>
-      </article>
+    <section class="meta-grid">
+      <div class="meta-card"><span class="label">PROYECTO</span><span class="value">Sistema de detección y señalización con Arduino</span></div>
+      <div class="meta-card"><span class="label">PLATAFORMA</span><span class="value">Arduino Uno R3 y protoboard</span></div>
+      <div class="meta-card"><span class="label">VIDEO</span><span class="value">armado.mp4 · demostración del circuito</span></div>
+      <div class="meta-card"><span class="label">FUNCIÓN</span><span class="value">Detectar proximidad y responder con luces y movimiento</span></div>
+      <div class="meta-card" style="grid-column: 1 / -1;"><span class="label">RESULTADO OBSERVADO</span><span class="value">Al acercar un objeto al sensor ultrasónico, cambia el indicador luminoso y se activa el servomotor.</span></div>
     </section>
-  </main>
 
+    <section class="section">
+      <div class="section-head"><span class="section-num">01</span><h2>Video de la demostración</h2></div>
+      <div class="workspace"><article class="panel panel--wide">
+        <h3>OBSERVACIÓN DIRECTA DEL ARMADO</h3>
+        <div class="video-frame"><video controls preload="metadata"><source src="armado.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video></div>
+        <p class="video-caption">Demostración del circuito armado y de la respuesta del sistema ante un objeto cercano.</p>
+      </article></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span class="section-num">02</span><h2>Componentes utilizados</h2></div>
+      <div class="workspace"><article class="panel panel--wide">
+        <h3>MATERIALES IDENTIFICADOS EN EL VIDEO</h3>
+        <table><thead><tr><th>Componente</th><th>Función dentro del sistema</th></tr></thead><tbody>
+          <tr><td><b>Arduino Uno R3</b></td><td>Controla las entradas del sensor y activa las salidas del circuito.</td></tr>
+          <tr><td><b>Protoboard</b></td><td>Permite montar y distribuir las conexiones sin soldar los componentes.</td></tr>
+          <tr><td><b>Sensor ultrasónico HC-SR04</b></td><td>Mide la distancia y detecta cuando un objeto se aproxima.</td></tr>
+          <tr><td><b>Micro servomotor SG90</b></td><td>Realiza un movimiento mecánico como respuesta a la detección.</td></tr>
+          <tr><td><b>LED verde y LED rojo</b></td><td>Indican visualmente el estado normal y el estado de alerta o detección.</td></tr>
+          <tr><td><b>Resistencias y cables jumper</b></td><td>Limitan la corriente de los LEDs y conectan los componentes al Arduino.</td></tr>
+          <tr><td><b>Módulo láser</b></td><td>Proyecta un haz verde que funciona como elemento visual del montaje.</td></tr>
+        </tbody></table>
+      </article></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span class="section-num">03</span><h2>Proceso de armado</h2></div>
+      <div class="workspace"><article class="panel panel--wide">
+        <h3>PASOS REALIZADOS</h3>
+        <ol>
+          <li><b>Preparación de la base:</b> se coloca la protoboard y el Arduino Uno sobre una superficie de apoyo para mantener estable el circuito.</li>
+          <li><b>Distribución de la alimentación:</b> se conectan las líneas de alimentación y tierra de la protoboard al Arduino mediante cables jumper.</li>
+          <li><b>Instalación del sensor:</b> el HC-SR04 se coloca orientado hacia el área donde se acercará el objeto. Sus terminales de alimentación y señales se conectan al Arduino.</li>
+          <li><b>Conexión de los indicadores:</b> los LEDs rojo y verde se montan en la protoboard con resistencias para protegerlos y se conectan a salidas digitales.</li>
+          <li><b>Colocación del servomotor:</b> el servomotor se fija en la parte superior del montaje y se conectan sus cables de alimentación, tierra y señal.</li>
+          <li><b>Integración del láser:</b> se coloca el módulo láser para proyectar una línea verde visible a través del área de trabajo.</li>
+          <li><b>Prueba del circuito:</b> se conecta el Arduino por USB y se acerca una figura de prueba al sensor para comprobar la respuesta del sistema.</li>
+        </ol>
+      </article></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span class="section-num">04</span><h2>Funcionamiento observado</h2></div>
+      <div class="workspace two-col">
+        <article class="panel"><h3>ESTADO INICIAL</h3><p>Al comenzar la demostración, el circuito permanece encendido y estable. El LED verde se observa activo, mientras el haz de luz del láser atraviesa horizontalmente el montaje.</p><div class="badge-row"><span class="badge"><span class="dot dot--green"></span>LED verde encendido</span><span class="badge">Sistema en reposo</span></div></article>
+        <article class="panel"><h3>DETECCIÓN</h3><p>Cuando la figura se acerca al sensor ultrasónico, el sistema reconoce el cambio de distancia y responde con una señal visual y mecánica.</p><div class="badge-row"><span class="badge"><span class="dot dot--red"></span>LED rojo encendido</span><span class="badge">Servomotor activado</span></div></article>
+        <article class="panel panel--wide"><h3>SECUENCIA DE RESPUESTA</h3><p>El sensor HC-SR04 envía la información de distancia al Arduino. El programa procesa esa lectura y, cuando identifica un objeto cercano, cambia el estado de los LEDs: el verde se apaga y el rojo se enciende. Al mismo tiempo, el servomotor gira para representar la acción mecánica del sistema. El láser permanece visible como parte de la señalización del prototipo.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span class="section-num">05</span><h2>Conclusión</h2></div>
+      <div class="workspace"><article class="panel panel--wide">
+        <h3>RESULTADO DE LA PRUEBA</h3>
+        <p>El armado integra correctamente una entrada —el sensor ultrasónico— con varias salidas: los LEDs, el servomotor y el módulo láser. La demostración confirma que el Arduino puede recibir una lectura de proximidad y convertirla en una respuesta visual y mecánica.</p>
+        <p>Este montaje puede utilizarse como base para un sistema de alarma, una barrera automática o un estacionamiento inteligente. Para una versión final se recomienda ordenar los cables, fijar mejor los componentes y comprobar individualmente cada conexión antes de realizar nuevas pruebas.</p>
+      </article></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span class="section-num">06</span><h2>Seguridad y recomendaciones</h2></div>
+      <div class="workspace"><article class="panel panel--wide"><ul>
+        <li><b>Desconectar la alimentación</b> antes de cambiar cualquier cable o componente.</li>
+        <li><b>Usar resistencias</b> con los LEDs para evitar que se dañen.</li>
+        <li><b>No apuntar el láser a los ojos</b> ni a superficies que puedan reflejarlo directamente.</li>
+        <li><b>Verificar polaridades y conexiones</b> de 5 V y GND antes de encender el Arduino.</li>
+        <li><b>Mantener libre el movimiento del servomotor</b> para evitar que se fuerce o se caliente.</li>
+      </ul></article></div>
+    </section>
+
+    <div class="actions"><a class="btn btn--primary" href="index.html#catalogo">Guardar espacio</a><a class="btn btn--ghost" href="index.html#catalogo">Volver al catálogo</a></div>
+  </main>
   <footer>© 2026 — Automatización industrial y de servicios · CBTIS 144</footer>
 </body>
 </html>
